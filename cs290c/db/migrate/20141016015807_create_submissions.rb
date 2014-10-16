@@ -3,7 +3,7 @@ class CreateSubmissions < ActiveRecord::Migration
     create_table :submissions do |t|
       t.string :title
       t.string :url
-      t.reference :community
+      t.references :community
 
       t.timestamps
     end
