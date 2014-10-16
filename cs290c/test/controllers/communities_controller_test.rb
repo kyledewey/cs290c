@@ -2,7 +2,6 @@ require 'test_helper'
 
 class CommunitiesControllerTest < ActionController::TestCase
   setup do
-    #@community = Community.new name: 'Good'
     @community = communities(:one)
   end
 
@@ -46,5 +45,15 @@ class CommunitiesControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to communities_path
+  end
+
+  test 'fail when community name is too small' do
+    c = Community.new name: 'bad'
+    assert c.invalid?
+  end
+
+  test 'fail when community name is a duplicate' do
+    c = Community.new name: @community.name
+    assert c.invalid?
   end
 end
